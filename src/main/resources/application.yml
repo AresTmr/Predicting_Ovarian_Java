@@ -1,0 +1,11 @@
+server:
+  port: 18501
+
+spring:
+  application:
+    name: predicting-ovarian
+
+logging:
+  level:
+    root: INFO
+    com.hospital.ovarian: DEBUG

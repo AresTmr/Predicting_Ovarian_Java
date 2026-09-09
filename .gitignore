@@ -1,0 +1,49 @@
+# ============== Java / Maven ==============
+target/
+*.class
+*.jar
+*.war
+hs_err_pid*
+replay_pid*
+.mvn/
+mvnw
+mvnw.cmd
+
+# Maven 本地仓库（避免大文件夹入库）
+.m2-repo/
+.m2-settings.xml
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+*.iws
+*.ipr
+
+# ============== 数据库 ==============
+data/*.db
+data/*.mv.db
+data/*.trace.db
+
+# ============== Node / 前端 ==============
+node_modules/
+dist/
+.vite/
+
+# ============== 日志 ==============
+logs/
+*.log
+
+# ============== 系统 ==============
+.DS_Store
+Thumbs.db
+
+# ============== 测试 ==============
+*.test
+*.orig
+
+# ============== 上传文件 ==============
+uploads/
