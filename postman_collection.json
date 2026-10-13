@@ -1,0 +1,86 @@
+{
+  "info": {
+    "name": "Predicting Ovarian Java v2.2",
+    "_postman_id": "00000000-0000-0000-0000-000000000001",
+    "description": "卵巢储备评估系统 API 集合",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. 健康检查",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/v1/patients/_health", "host": ["{{baseUrl}}"], "path": ["api","v1","patients","_health"] }
+      }
+    },
+    {
+      "name": "2. 一键填入 (caseNo=15801 - mock)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/v1/patients/one-click-fill?caseNo=15801", "host": ["{{baseUrl}}"], "path": ["api","v1","patients","one-click-fill"] }
+      }
+    },
+    {
+      "name": "3. 一键填入 (caseNo=15828 - 导入数据)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/v1/patients/one-click-fill?caseNo=15828", "host": ["{{baseUrl}}"], "path": ["api","v1","patients","one-click-fill"] }
+      }
+    },
+    {
+      "name": "4. 搜索患者 (默认)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/v1/patients/search?page=1&size=20", "host": ["{{baseUrl}}"], "path": ["api","v1","patients","search"] }
+      }
+    },
+    {
+      "name": "5. 搜索患者 (按 caseNo)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/v1/patients/search?keyword=15557&page=1&size=10", "host": ["{{baseUrl}}"], "path": ["api","v1","patients","search"] }
+      }
+    },
+    {
+      "name": "6. 触发数据导入",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/v1/import/default", "host": ["{{baseUrl}}"], "path": ["api","v1","import","default"] }
+      }
+    },
+    {
+      "name": "7. 预测 (基于特征)",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": { "mode": "raw", "raw": "{\"e2\":68.0,\"lh\":0.1,\"p\":0.28,\"fsh\":18.06,\"endometriumThickness\":4.9,\"follicleTotalCount\":8,\"follicleLeftCount\":5,\"follicleRightCount\":3,\"follicleMaxDiameter\":8.0,\"follicleAvgDiameter\":6.0,\"follicleSizeUnder10\":8,\"follicleSize10_12\":0,\"follicleSize13_15\":0,\"follicleSize16_18\":0,\"follicleSizeAbove18\":0,\"fshDose\":250,\"lhDose\":75,\"hmgDose\":75}" },
+        "url": { "raw": "{{baseUrl}}/api/v1/predict", "host": ["{{baseUrl}}"], "path": ["api","v1","predict"] }
+      }
+    },
+    {
+      "name": "8. 预测 (基于 visitPk=1)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/v1/predict/visit/1", "host": ["{{baseUrl}}"], "path": ["api","v1","predict","visit","1"] }
+      }
+    },
+    {
+      "name": "9. 获取周期详情 (cyclePk=1)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/v1/cycles/1", "host": ["{{baseUrl}}"], "path": ["api","v1","cycles","1"] }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:18501" }
+  ]
+}

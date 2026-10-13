@@ -1,7 +1,7 @@
-import axios from ''axios''
+import axios from 'axios'
 
 const api = axios.create({
-  baseURL: ''/api/v1'',
+  baseURL: '/api/v1',
   timeout: 10000
 })
 
@@ -10,10 +10,10 @@ export interface VisitDto {
   stimulationDay: number
   daysSinceLastVisit: number
   visitDate?: string
-  e2Current: number
-  lhCurrent: number
-  pCurrent: number
-  fshCurrent: number
+  e2: number
+  lh: number
+  p: number
+  fsh: number
   endometriumThickness: number
   follicleTotalCount: number
   follicleLeftCount?: number
@@ -28,6 +28,30 @@ export interface VisitDto {
   fshDose: number
   lhDose: number
   hmgDose: number
+}
+
+export interface CycleDto {
+  cyclePk?: number
+  patientUuid?: string
+  cycleNo?: number
+  cycleStartDate?: string
+  cycleStatus?: string
+  reserveGrade?: string
+  reserveIndex?: string
+  riskDecline?: string
+  expectedOocytes?: number
+  ohssRiskLevel?: string
+  visits?: VisitDto[]
+}
+
+export interface PredictionDto {
+  visitPk?: number | null
+  predictedFshDose: number
+  predictedLhDose: number
+  predictedHmgDose: number
+  confidenceScore: number
+  modelVersion: string
+  inferenceTimeMs: number
 }
 
 export interface PatientDto {
@@ -57,20 +81,54 @@ export interface PatientDto {
 
 export const patientApi = {
   search(keyword: string, page = 1, size = 20) {
-    return api.get<any, { data: { total: number; items: PatientDto[] } }>(''/patients/search'', {
+    return api.get<any, { data: { total: number; items: PatientDto[] } }>('/patients/search', {
       params: { keyword, page, size }
     })
   },
-
   detail(uuid: string) {
     return api.get<any, { data: PatientDto }>(`/patients/${uuid}`)
   },
-
   oneClickFill(caseNo: string) {
-    return api.get<any, { data: PatientDto }>(''/patients/one-click-fill'', {
+    return api.get<any, { data: PatientDto }>('/patients/one-click-fill', {
       params: { caseNo }
     })
   }
 }
 
-export default patientApi
+export const cycleApi = {
+  createWithVisits(patientUuid: string, cycle: CycleDto) {
+    return api.post<any, { data: CycleDto }>(`/patients/${patientUuid}/cycles`, cycle)
+  },
+  detail(cyclePk: number) {
+    return api.get<any, { data: CycleDto }>(`/cycles/${cyclePk}`)
+  },
+  listByPatient(patientUuid: string) {
+    return api.get<any, { data: CycleDto[] }>(`/patients/${patientUuid}/cycles`)
+  }
+}
+
+export const visitApi = {
+  create(cyclePk: number, visit: VisitDto) {
+    return api.post<any, { data: VisitDto }>(`/cycles/${cyclePk}/visits`, visit)
+  },
+  batchCreate(cyclePk: number, visits: VisitDto[]) {
+    return api.post<any, { data: VisitDto[] }>(`/cycles/${cyclePk}/visits/batch`, visits)
+  },
+  update(visitPk: number, visit: VisitDto) {
+    return api.put<any, { data: VisitDto }>(`/visits/${visitPk}`, visit)
+  },
+  delete(visitPk: number) {
+    return api.delete<any, any>(`/visits/${visitPk}`)
+  }
+}
+
+export const predictionApi = {
+  predict(features: VisitDto) {
+    return api.post<any, { data: PredictionDto }>('/predict', features)
+  },
+  predictByVisit(visitPk: number) {
+    return api.post<any, { data: PredictionDto }>(`/predict/visit/${visitPk}`)
+  }
+}
+
+export default api

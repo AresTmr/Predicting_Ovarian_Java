@@ -1,18 +1,23 @@
 package com.hospital.ovarian.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * 患者实体（精简版 - 无 ORM 注解）
- */
 @Data
+@TableName("fact_patient")
 public class Patient {
 
+    @TableId(type = IdType.AUTO)
     private Long patientPk;
+
     private String patientUuid;
     private String caseNo;
+    @TableField("case_no_hash")
     private String caseNoHash;
 
     private Integer age;
