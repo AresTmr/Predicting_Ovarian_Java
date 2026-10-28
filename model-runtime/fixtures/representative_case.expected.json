@@ -1,0 +1,31 @@
+{
+  "caseVersion": "phase870_manuscript_case_v2_curve_selected",
+  "dose": {
+    "fsh": {
+      "label": "high",
+      "display": ">160",
+      "dose": 200.0,
+      "probability": 0.8962883423803422
+    },
+    "lh": {
+      "label": "dose_75",
+      "display": "75",
+      "dose": 75.0,
+      "probability": 0.8237794473285001
+    },
+    "hmg": {
+      "label": "dose_150",
+      "display": "150",
+      "dose": 150.0,
+      "probability": 0.8752005175134555
+    }
+  },
+  "outcomes": {
+    "fshDose": 200.0,
+    "lhDose": 75.0,
+    "hmgDose": 150.0,
+    "oocytes": 12.0,
+    "mii": 11.196333885192871,
+    "ohssRisk": 0.010482192219835611
+  }
+}

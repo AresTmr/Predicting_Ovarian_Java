@@ -1,0 +1,49 @@
+{
+  "contractVersion": "day1-validation-v1",
+  "baseline": "Predicting_Ovarian_UI_backup_2026-09-17",
+  "doseModels": {
+    "fsh": {
+      "path": "assets/models/dose/fsh.pt",
+      "source": "outputs/paper_audit_fsh3_20260723/checkpoints/parsimonious_clinical_gru_addgate_fsh3_holdout.pt",
+      "sha256": "826d26f2c8c262a36387d6e4e6fbc3b86530df26123efa829c842eb58bd4e4a3",
+      "staticFeatures": 10,
+      "dynamicFeatures": 24,
+      "classes": 3
+    },
+    "lh": {
+      "path": "assets/models/dose/lh.pt",
+      "source": "outputs/paper_audit_20260715/checkpoints/gru_addgate_lh_holdout.pt",
+      "sha256": "eb45362b778d87362bce20302b1d44e6ffccc23e4c0c1fe310c23ba857a38b9b",
+      "staticFeatures": 10,
+      "dynamicFeatures": 24,
+      "classes": 3
+    },
+    "hmg": {
+      "path": "assets/models/dose/hmg.pt",
+      "source": "outputs/paper_audit_20260715/checkpoints/gru_addgate_hmg_holdout.pt",
+      "sha256": "0035be317708ca354dbc8dd95bcb53f3f0b629f8f318988f65175c4f5f07c640",
+      "staticFeatures": 10,
+      "dynamicFeatures": 24,
+      "classes": 4
+    }
+  },
+  "outcomeModels": {
+    "efficacy": {
+      "path": "assets/models/candidate/efficacy/bundle.joblib",
+      "source": "models/candidate_dose_response/candidate_response_ui_best_v2_modsev_20260710_/bundle.joblib",
+      "sha256": "d63571f3ca68ffc3f964fed1a1e98b7c235b727dec7b66600da602dd02262baa",
+      "tasks": {
+        "layer2_oocytes": "xgboost.sklearn.XGBRegressor",
+        "layer2_mii": "xgboost.sklearn.XGBRegressor"
+      }
+    },
+    "safety": {
+      "path": "assets/models/candidate/safety/bundle.joblib",
+      "source": "models/candidate_dose_response/candidate_response_ui_best_v3_modsev_20260710_retry/bundle.joblib",
+      "sha256": "d8223c237ed781d496b5d8fb2711fff0fb3a8581ad711e4a6fd093b0378bc274",
+      "tasks": {
+        "layer2_ohss": "sklearn.ensemble._forest.RandomForestClassifier"
+      }
+    }
+  }
+}

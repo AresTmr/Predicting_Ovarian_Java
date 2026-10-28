@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-10-27T07:20:33.317885+00:00",
+  "baselineRoot": "C:\\Users\\24986\\Desktop\\FJNU\\git\\Predicting_Ovarian_UI_backup_2026-09-17",
+  "models": {
+    "fsh": {
+      "path": "assets\\preprocessing\\fsh.json",
+      "trainingRowCount": 34908,
+      "observedDynamicRowCount": 239466,
+      "staticFeatureCount": 10,
+      "dynamicFeatureCount": 24,
+      "elapsedSeconds": 49.13
+    },
+    "lh": {
+      "path": "assets\\preprocessing\\lh.json",
+      "trainingRowCount": 34908,
+      "observedDynamicRowCount": 239466,
+      "staticFeatureCount": 10,
+      "dynamicFeatureCount": 24,
+      "elapsedSeconds": 29.605
+    },
+    "hmg": {
+      "path": "assets\\preprocessing\\hmg.json",
+      "trainingRowCount": 34908,
+      "observedDynamicRowCount": 239466,
+      "staticFeatureCount": 10,
+      "dynamicFeatureCount": 24,
+      "elapsedSeconds": 30.932
+    }
+  },
+  "elapsedSeconds": 109.668
+}
